@@ -1,0 +1,73 @@
+[project]
+name = "protein-hunter-mcp"
+version = "0.1.0"
+description = "MCP server for Protein Hunter - protein design and analysis tools"
+readme = "README.md"
+requires-python = ">=3.10,<3.13"
+dependencies = [
+    # Boltz with CUDA support (includes torch, numpy, rdkit, biopython, gemmi, etc.)
+    "boltz[cuda]",
+    
+    # Chai-lab from git
+    "chai-lab @ git+https://github.com/sokrypton/chai-lab.git",
+    
+    # Core Protein Hunter dependencies (tqdm, pyyaml, requests, numpy, numba already in boltz)
+    "matplotlib",
+    "seaborn",
+    "prody",
+    "pypdb",
+    "py3Dmol",
+    "py2Dmol",
+    "logmd==0.1.45",
+    "ml-collections",
+    
+    # PyRosetta
+    "pyrosettacolabsetup",
+    "pyrosetta-installer",
+    
+    # Chai-lab specific dependencies and version overrides
+    "rdkit~=2024.9.5",  # Override Boltz's rdkit>=2024.3.2 with Protein Hunter's pinning
+    "jaxtyping>=0.2.25",
+    "pandera>=0.24",
+    "antipickle==0.2.0",
+    "typing-inspect",
+    "beartype",
+    "typeguard",
+    "ihm",
+    "mypy-extensions",
+    "equinox",
+    "wadler-lindig",
+    
+    # MCP server dependencies
+    "mcp",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest",
+    "pytest-asyncio",
+    "mypy",
+    "ruff",
+    "ipykernel",  # Jupyter support
+]
+
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+py-modules = []
+
+[tool.uv]
+# Post-installation required: run `uv run postinstall.py` after `uv sync`
+# This handles: PyRosetta install, Boltz weights, LigandMPNN models, DAlphaBall setup
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.mypy]
+python_version = "3.10"
+strict = true
+warn_return_any = true
+warn_unused_configs = true
