@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "protein-hunter-mcp": {
+      "command": "uvx",
+      "args": ["--from", "protein-hunter-mcp@latest", "server"]
+    }
+  }
+}
+
