@@ -1,6 +1,10 @@
 # Protein Hunter MCP
 
-An MCP (Model Context Protocol) server for Protein Hunter - protein design and analysis tools powered by Boltz, Chai-lab, PyRosetta, and LigandMPNN.
+An MCP (Model Context Protocol) server for **Protein Hunter** – protein design and analysis tools powered by Boltz, Chai-lab, PyRosetta, and LigandMPNN.
+
+**Protein Hunter itself was developed by Cho et al. in the work “[Protein Hunter: exploiting structure hallucination within diffusion for protein design]” ([bioRxiv](https://www.biorxiv.org/content/10.1101/2025.10.10.681530v1)) and released at the upstream repository [yehlincho/Protein-Hunter](https://github.com/yehlincho/Protein-Hunter).**
+
+**This `protein_hunter_mcp` repository is an unofficial MCP wrapper around the upstream Protein Hunter code, created by the Longevity Genie team for use by their LongevityForest AI agent repository and related tools; it is not an official project of the Protein Hunter authors.**
 
 ![LongevityForest Protein Hunter](images/longevity_protein_hunter.jpg)
 
@@ -8,11 +12,11 @@ An MCP (Model Context Protocol) server for Protein Hunter - protein design and a
 
 ## LongevityForest Ecosystem
 
-This project is part of the **LongevityForest** science agents ecosystem - a set of tools for studying genes and proteins that influence lifespan. The ecosystem includes:
+This project is connected to the **LongevityForest** AI agent repository. The ecosystem includes:
 
-- **longevity-forest**: Multi-agent gene analysis system with specialised bioinformatics agents ([GitHub](https://github.com/longevity-genie/longevity-forest))
+- **longevity-forest**: Multi-agent gene analysis repository with specialised bioinformatics agents ([GitHub](https://github.com/longevity-genie/longevity-forest))
 - **protein_hunter_mcp** (this repository): MCP server for protein structure analysis and protein target selection
-- **cell2sequence4longevity-mcp**: MCP server connecting cellular phenotypes to sequence-level changes in longevity research
+- **cell2sequence4longevity-mcp**: MCP server that wraps our fine-tuning of cell2sequence model to use it for the age prediction.
 
 Used together, these tools link cellular observations, sequence analysis, and protein structure analysis across multiple biological scales.
 
