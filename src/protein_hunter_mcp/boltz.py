@@ -586,6 +586,11 @@ class BoltzTools:
             output_dir = protein_hunter_dir / "results_boltz" / name
             summary_csv = output_dir / "summary_high_iptm.csv"
             
+            # Fall back to summary_all_runs.csv if high_iptm CSV doesn't exist
+            # (happens when no cycles met the high-ipTM threshold)
+            if not summary_csv.exists():
+                summary_csv = output_dir / "summary_all_runs.csv"
+            
             if not summary_csv.exists():
                 return {
                     "status": "error",

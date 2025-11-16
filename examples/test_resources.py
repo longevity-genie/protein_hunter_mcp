@@ -92,7 +92,7 @@ result = await mcp_client.call_tool(
         "gpu_id": 0
     }
 )
-# Returns: {"status": "completed", "summary_csv": "/path/to/summary_high_iptm.csv"}
+# Returns: {"status": "completed", "summary_csv": "/path/to/summary_high_iptm.csv"} (or summary_all_runs.csv if no high-ipTM cycles)
 
 # Example 2: Advanced - Multimer binder design with full control
 result = await mcp_client.call_tool(
