@@ -11,20 +11,37 @@ The Model Context Protocol (MCP) is an open protocol that standardizes how appli
 - Python 3.10-3.12
 - [uv](https://github.com/astral-sh/uv) package manager
 - CUDA-capable GPU (recommended for Boltz)
+- Git with submodule support
 
 ## Installation
 
-1. **Clone the repository** (if not already done):
+1. **Clone the repository with submodules**:
    ```bash
-   cd /data/sources/protein_hunter_mcp
+   git clone --recurse-submodules https://github.com/YOUR_USERNAME/protein_hunter_mcp.git
+   cd protein_hunter_mcp
    ```
 
-2. **Sync dependencies with uv**:
+   If you already cloned without `--recurse-submodules`, initialize the submodules:
+   ```bash
+   git submodule update --init --recursive
+   ```
+
+2. **Install uv** (if not already installed):
+   ```bash
+   curl -LsSf https://astral.sh/uv/install.sh | sh
+   ```
+
+3. **Sync dependencies with uv**:
    ```bash
    uv sync
    ```
 
-3. **Run post-installation script**:
+   This will install:
+   - Modified Boltz from the Protein-Hunter submodule (with custom features)
+   - Chai-lab from the sokrypton fork
+   - All required dependencies
+
+4. **Run post-installation script**:
    ```bash
    uv run postinstall.py
    ```
@@ -144,6 +161,19 @@ uv run pytest
 
 ## Troubleshooting
 
+### Submodule Issues
+If you encounter errors about missing `Protein-Hunter` directory or Boltz import errors:
+```bash
+# Initialize/update submodules
+git submodule update --init --recursive
+
+# If submodule is out of sync
+git submodule update --remote --merge
+
+# Reinstall dependencies
+uv sync --reinstall-package boltz
+```
+
 ### PyRosetta Installation Issues
 If PyRosetta fails to install, the postinstall script uses a PATH wrapper to redirect `pip` calls to `uv pip`. Check the output for specific errors.
 
@@ -152,6 +182,11 @@ Ensure you have a CUDA-compatible GPU and drivers installed. Boltz requires CUDA
 
 ### Missing LigandMPNN or DAlphaBall
 These are optional components from the Protein-Hunter repository. The postinstall script will skip them if not found.
+
+### Boltz Import Errors
+If you see `TypeError: Boltz2.predict_step() got an unexpected keyword argument`, you're likely using the standard Boltz package instead of the modified version. Ensure:
+1. The Protein-Hunter submodule is initialized (`git submodule update --init --recursive`)
+2. Dependencies are synced properly (`uv sync --reinstall-package boltz`)
 
 ## Architecture
 

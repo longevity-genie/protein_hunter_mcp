@@ -5,7 +5,7 @@ description = "MCP server for Protein Hunter - protein design and analysis tools
 readme = "README.md"
 requires-python = ">=3.10,<3.13"
 dependencies = [
-    # Boltz with CUDA support (includes torch, numpy, rdkit, biopython, gemmi, etc.)
+    # Modified Boltz from Protein-Hunter submodule with CUDA support  
     "boltz[cuda]",
     
     # Chai-lab from git
@@ -69,6 +69,9 @@ where = ["src"]
 [tool.uv]
 # Post-installation required: run `uv run postinstall.py` after `uv sync`
 # This handles: PyRosetta install, Boltz weights, LigandMPNN models, DAlphaBall setup
+
+[tool.uv.sources]
+boltz = { path = "Protein-Hunter/boltz_ph", editable = true }
 
 [tool.ruff]
 line-length = 100

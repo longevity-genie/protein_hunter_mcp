@@ -309,7 +309,7 @@ wheels = [
 [[package]]
 name = "boltz"
 version = "2.2.1"
-source = { registry = "https://pypi.org/simple" }
+source = { editable = "Protein-Hunter/boltz_ph" }
 dependencies = [
     { name = "biopython" },
     { name = "chembl-structure-pipeline" },
@@ -335,10 +335,6 @@ dependencies = [
     { name = "types-requests" },
     { name = "wandb" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/73/78/c6c7c4f3a05749fb26c5446b7413d11f7094ea36bf11a9eba671f73f03d2/boltz-2.2.1.tar.gz", hash = "sha256:355a033ce2b49543a927470d585136794521d8639b2eeb5a1818d74dc3e513c3", size = 219969, upload-time = "2025-09-08T15:59:34.799Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/98/55/3eb80fdcf250a0d7bcfcccb584cae200d820fcc158dcdf3f2dbfa4662811/boltz-2.2.1-py3-none-any.whl", hash = "sha256:b8c62bbdede1922931d9203118f62c858f11aa699bf91fd4c05a5ed6a6d8b4fc", size = 268390, upload-time = "2025-09-08T15:59:32.803Z" },
-]
 
 [package.optional-dependencies]
 cuda = [
@@ -346,6 +342,40 @@ cuda = [
     { name = "cuequivariance-ops-torch-cu12" },
     { name = "cuequivariance-torch" },
 ]
+
+[package.metadata]
+requires-dist = [
+    { name = "biopython", specifier = "==1.84" },
+    { name = "chembl-structure-pipeline", specifier = "==1.2.2" },
+    { name = "click", specifier = "==8.1.7" },
+    { name = "cuequivariance-ops-cu12", marker = "extra == 'cuda'", specifier = ">=0.5.0" },
+    { name = "cuequivariance-ops-torch-cu12", marker = "extra == 'cuda'", specifier = ">=0.5.0" },
+    { name = "cuequivariance-torch", marker = "extra == 'cuda'", specifier = ">=0.5.0" },
+    { name = "dm-tree", specifier = "==0.1.8" },
+    { name = "einops", specifier = "==0.8.0" },
+    { name = "einx", specifier = "==0.3.0" },
+    { name = "fairscale", specifier = "==0.4.13" },
+    { name = "gemmi", specifier = "==0.6.5" },
+    { name = "hydra-core", specifier = "==1.3.2" },
+    { name = "mashumaro", specifier = "==3.14" },
+    { name = "modelcif", specifier = "==1.2" },
+    { name = "numba", specifier = "==0.61.0" },
+    { name = "numpy", specifier = ">=1.26,<2.0" },
+    { name = "pandas", specifier = ">=2.2.2" },
+    { name = "pytest", marker = "extra == 'test'" },
+    { name = "pytorch-lightning", specifier = "==2.5.0" },
+    { name = "pyyaml", specifier = "==6.0.2" },
+    { name = "rdkit", specifier = ">=2024.3.2" },
+    { name = "requests", specifier = "==2.32.3" },
+    { name = "requests", marker = "extra == 'test'" },
+    { name = "ruff", marker = "extra == 'lint'" },
+    { name = "scikit-learn", specifier = "==1.6.1" },
+    { name = "scipy", specifier = "==1.13.1" },
+    { name = "torch", specifier = ">=2.2" },
+    { name = "types-requests" },
+    { name = "wandb", specifier = "==0.18.7" },
+]
+provides-extras = ["lint", "test", "cuda"]
 
 [[package]]
 name = "botocore"
@@ -3029,7 +3059,7 @@ dev = [
 requires-dist = [
     { name = "antipickle", specifier = "==0.2.0" },
     { name = "beartype" },
-    { name = "boltz", extras = ["cuda"] },
+    { name = "boltz", extras = ["cuda"], editable = "Protein-Hunter/boltz_ph" },
     { name = "chai-lab", git = "https://github.com/sokrypton/chai-lab.git" },
     { name = "eliot", specifier = ">=1.17.5" },
     { name = "equinox" },
