@@ -193,19 +193,19 @@ def main() -> None:
     print("🚀 Running Protein Hunter MCP post-installation...\n")
     
     # Step 1: Download Boltz weights
-    # download_boltz_weights()
+    download_boltz_weights()
     
     # Step 2: Install PyRosetta with pip wrapper
     install_pyrosetta()
     
     # Step 3: Setup LigandMPNN (if available)
-    #setup_ligandmpnn()
+    setup_ligandmpnn()
     
     # Step 4: Make DAlphaBall.gcc executable
-    #setup_dalphaball()
+    setup_dalphaball()
     
     # Step 5: Verify installations
-    #verify_installations()
+    verify_installations()
     
     print("\n🎉 Post-installation complete!")
     print("\n📝 Next steps:")
