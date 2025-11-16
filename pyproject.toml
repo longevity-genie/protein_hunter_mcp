@@ -1,6 +1,6 @@
 [project]
 name = "protein-hunter-mcp"
-version = "0.2.0"
+version = "0.3.0"
 description = "MCP server for Protein Hunter - protein design and analysis tools"
 readme = "README.md"
 requires-python = ">=3.10,<3.13"
