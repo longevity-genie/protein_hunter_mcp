@@ -67,8 +67,11 @@ build-backend = "setuptools.build_meta"
 where = ["src"]
 
 [tool.uv]
-# Post-installation required: run `uv run postinstall.py` after `uv sync`
-# This handles: PyRosetta install, Boltz weights, LigandMPNN models, DAlphaBall setup
+# Post-installation workflow:
+# 1. Run: uv sync
+# 2. Run: uv run postinstall.py
+# 3. After postinstall, always use: uv sync --inexact
+# The --inexact flag prevents uv from removing pyrosetta (installed by postinstall)
 
 [tool.uv.sources]
 boltz = { path = "Protein-Hunter/boltz_ph", editable = true }

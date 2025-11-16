@@ -7,6 +7,8 @@ import asyncio
 import csv
 from fastmcp import Context
 
+from protein_hunter_mcp.shared_lock import get_design_lock
+
 
 class BoltzTools:
     def __init__(self, gpu_id: int = 0):
@@ -451,6 +453,24 @@ class BoltzTools:
         This is the least common denominator for all Boltz design tools. It handles
         all possible parameter combinations for different design scenarios.
         """
+        lock = get_design_lock()
+        
+        # Wait for the lock with periodic progress updates
+        total_steps = num_designs * num_cycles
+        wait_interval = 2.0  # Report waiting status every 2 seconds
+        
+        while lock.locked():
+            if ctx:
+                await ctx.report_progress(progress=0, total=total_steps)
+            try:
+                await asyncio.wait_for(lock.acquire(), timeout=wait_interval)
+                break
+            except asyncio.TimeoutError:
+                continue
+        else:
+            # Lock wasn't locked, acquire it now
+            await lock.acquire()
+        
         try:
             # Find the Protein-Hunter directory
             protein_hunter_dir = Path(__file__).parent.parent.parent / "Protein-Hunter"
@@ -622,5 +642,8 @@ class BoltzTools:
                 "status": "error",
                 "error": str(e)
             }
+        finally:
+            # Always release the lock
+            lock.release()
 
 
