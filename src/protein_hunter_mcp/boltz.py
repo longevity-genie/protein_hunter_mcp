@@ -1,6 +1,6 @@
 
 
-from typing import Optional
+from typing import Optional, Any
 from pathlib import Path
 
 import asyncio
@@ -23,7 +23,7 @@ class BoltzTools:
         num_designs: int = 1,
         num_cycles: int = 7,
         ctx: Context = None,
-    ) -> dict[str, str]:
+    ) -> dict[str, Any]:
         """Design a protein binder for a target protein using Boltz (Example 1: standard binding).
         
         This is a simplified interface for designing protein binders with all-X sequence.
@@ -62,7 +62,7 @@ class BoltzTools:
         num_designs: int = 1,
         num_cycles: int = 7,
         ctx: Context = None,
-    ) -> dict[str, str]:
+    ) -> dict[str, Any]:
         """Design a protein binder using a template structure (Example 2: template-based design).
         
         Uses a template PDB structure to guide the design process.
@@ -101,7 +101,7 @@ class BoltzTools:
         num_designs: int = 1,
         num_cycles: int = 7,
         ctx: Context = None,
-    ) -> dict[str, str]:
+    ) -> dict[str, Any]:
         """Design a protein binder with specified contact residues (Example 3: contact specification).
         
         Designs a binder targeting specific residue positions on the target protein.
@@ -137,7 +137,7 @@ class BoltzTools:
         num_designs: int = 1,
         num_cycles: int = 7,
         ctx: Context = None,
-    ) -> dict[str, str]:
+    ) -> dict[str, Any]:
         """Design a binder for a multimeric protein target (Example 4: multimer binder).
         
         Designs a binder for protein complexes with multiple chains (e.g., dimers).
@@ -170,7 +170,7 @@ class BoltzTools:
         num_designs: int = 1,
         num_cycles: int = 7,
         ctx: Context = None,
-    ) -> dict[str, str]:
+    ) -> dict[str, Any]:
         """Design a cyclic peptide binder for a target protein (Example 5: cyclic peptide).
         
         Designs short cyclic peptides (10-20 residues) that bind to target proteins.
@@ -207,7 +207,7 @@ class BoltzTools:
         num_designs: int = 1,
         num_cycles: int = 7,
         ctx: Context = None,
-    ) -> dict[str, str]:
+    ) -> dict[str, Any]:
         """Design a protein binder for a small molecule (Example 6: small molecule binder).
         
         Designs proteins that bind to small molecules specified by CCD codes (e.g., "SAM").
@@ -244,7 +244,7 @@ class BoltzTools:
         num_designs: int = 1,
         num_cycles: int = 7,
         ctx: Context = None,
-    ) -> dict[str, str]:
+    ) -> dict[str, Any]:
         """Design a protein binder for DNA or RNA (Example 7: nucleic acid binder).
         
         Designs proteins that bind to DNA or RNA sequences.
@@ -284,7 +284,7 @@ class BoltzTools:
         num_designs: int = 1,
         num_cycles: int = 7,
         ctx: Context = None,
-    ) -> dict[str, str]:
+    ) -> dict[str, Any]:
         """Design a binder for multiple target types (Example 8: heterogeneous targets).
         
         Designs proteins that bind to both a protein and a small molecule simultaneously.
@@ -348,7 +348,7 @@ class BoltzTools:
         use_msa_for_af3: bool = True,
         plot: bool = True,
         ctx: Context = None,
-    ) -> dict[str, str]:
+    ) -> dict[str, Any]:
         """Advanced Boltz design with full parameter control.
         
         Exposes all available parameters for maximum flexibility in protein design.
@@ -445,7 +445,7 @@ class BoltzTools:
         use_msa_for_af3: bool = True,
         plot: bool = True,
         ctx: Context = None,
-    ) -> dict[str, str]:
+    ) -> dict[str, Any]:
         """Internal method to run Boltz protein design with all optional parameters.
         
         This is the least common denominator for all Boltz design tools. It handles

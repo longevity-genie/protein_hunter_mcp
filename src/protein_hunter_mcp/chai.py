@@ -1,4 +1,4 @@
-from typing import Optional
+from typing import Optional, Any
 from pathlib import Path
 
 import asyncio
@@ -22,7 +22,7 @@ class ChaiTools:
         n_trials: int = 1,
         n_cycles: int = 5,
         ctx: Context = None,
-    ) -> dict[str, str]:
+    ) -> dict[str, Any]:
         """Design de novo proteins of a desired length (Chai Example 1: unconditional design).
         
         Generate unconditional proteins without a specific target.
@@ -63,7 +63,7 @@ class ChaiTools:
         n_trials: int = 1,
         n_cycles: int = 5,
         ctx: Context = None,
-    ) -> dict[str, str]:
+    ) -> dict[str, Any]:
         """Design a protein binder for a target protein using Chai (Example 2: protein binder).
         
         Designs a protein that binds to a specific target protein sequence.
@@ -106,7 +106,7 @@ class ChaiTools:
         n_trials: int = 1,
         n_cycles: int = 5,
         ctx: Context = None,
-    ) -> dict[str, str]:
+    ) -> dict[str, Any]:
         """Design a cyclic peptide binder for a target protein using Chai (Example 3: cyclic peptide).
         
         Designs short cyclic peptides that bind to target proteins.
@@ -146,7 +146,7 @@ class ChaiTools:
         n_trials: int = 1,
         n_cycles: int = 5,
         ctx: Context = None,
-    ) -> dict[str, str]:
+    ) -> dict[str, Any]:
         """Design a protein binder for a small molecule ligand using Chai (Example 4: ligand binder).
         
         Designs proteins that bind to small molecules specified by SMILES strings.
@@ -204,7 +204,7 @@ class ChaiTools:
         use_msa_for_af3: bool = False,
         plot: bool = True,
         ctx: Context = None,
-    ) -> dict[str, str]:
+    ) -> dict[str, Any]:
         """Advanced Chai design with full parameter control.
         
         Exposes all available parameters for maximum flexibility in protein design.
@@ -283,7 +283,7 @@ class ChaiTools:
         use_msa_for_af3: bool = False,
         plot: bool = True,
         ctx: Context = None,
-    ) -> dict[str, str]:
+    ) -> dict[str, Any]:
         """Internal method to run Chai protein design with all optional parameters.
         
         This is the least common denominator for all Chai design tools. It handles
