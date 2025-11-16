@@ -2,22 +2,47 @@
 
 An MCP (Model Context Protocol) server for Protein Hunter - protein design and analysis tools powered by Boltz, Chai-lab, PyRosetta, and LigandMPNN.
 
+![LongevityForest Protein Hunter](images/longevity_protein_hunter.jpg)
+
+**Repository**: https://github.com/longevity-genie/protein_hunter_mcp
+
+## LongevityForest Ecosystem
+
+This project is part of the **LongevityForest** science agents ecosystem - a set of tools for studying genes and proteins that influence lifespan. The ecosystem includes:
+
+- **longevity-forest**: Multi-agent gene analysis system with specialised bioinformatics agents ([GitHub](https://github.com/longevity-genie/longevity-forest))
+- **protein_hunter_mcp** (this repository): MCP server for protein structure analysis and protein target selection
+- **cell2sequence4longevity-mcp**: MCP server connecting cellular phenotypes to sequence-level changes in longevity research
+
+Used together, these tools link cellular observations, sequence analysis, and protein structure analysis across multiple biological scales.
+
 ## What is MCP?
 
 The Model Context Protocol (MCP) is an open protocol that standardizes how applications provide context to AI assistants. This server exposes Protein Hunter's capabilities through MCP, enabling AI assistants like Claude to perform protein design and analysis tasks.
 
 ## Requirements
 
+### Hardware requirements
+
+This server needs substantial GPU memory:
+
+- CUDA-capable GPU
+- Approximately 20–25GB VRAM (most consumer GPUs have 8–16GB and are not sufficient)
+- Workstation or cloud GPUs with high VRAM (e.g. NVIDIA A100, H100) are recommended
+
+In practice it is usually easier to use a deployed instance of this server than to run it on typical desktop hardware.
+
+### Software requirements
+
 - Python 3.10-3.12
 - [uv](https://github.com/astral-sh/uv) package manager
-- CUDA-capable GPU (recommended for Boltz)
 - Git with submodule support
 
 ## Installation
 
 1. **Clone the repository with submodules**:
    ```bash
-   git clone --recurse-submodules https://github.com/YOUR_USERNAME/protein_hunter_mcp.git
+   git clone --recurse-submodules https://github.com/longevity-genie/protein_hunter_mcp.git
    cd protein_hunter_mcp
    ```
 
@@ -107,7 +132,7 @@ Add to your Claude Desktop MCP configuration (`~/Library/Application Support/Cla
 }
 ```
 
-For detailed usage instructions, see [MCP_USAGE.md](MCP_USAGE.md).
+For detailed usage instructions, see [MCP_USAGE.md](docs/MCP_USAGE.md).
 
 ## Tool Usage
 
@@ -178,7 +203,9 @@ uv sync --reinstall-package boltz
 If PyRosetta fails to install, the postinstall script uses a PATH wrapper to redirect `pip` calls to `uv pip`. Check the output for specific errors.
 
 ### CUDA Issues
-Ensure you have a CUDA-compatible GPU and drivers installed. Boltz requires CUDA for optimal performance.
+Ensure you have a CUDA-compatible GPU and drivers installed. Boltz requires CUDA for good performance.
+
+Out-of-memory (OOM) errors usually indicate that the GPU does not have enough VRAM. The server expects roughly 20–25GB VRAM; most consumer GPUs (8–16GB) will not be sufficient. In that case, use a deployed instance of the server or a higher-memory GPU (for example A100 or H100, often available on cloud platforms).
 
 ### Missing LigandMPNN or DAlphaBall
 These are optional components from the Protein-Hunter repository. The postinstall script will skip them if not found.
@@ -216,11 +243,11 @@ This is a uv-based project, converted from the original conda-based Protein Hunt
 
 ### Design Philosophy
 
-- **Simplified Interfaces**: Each tool focuses on a specific use case with sensible defaults
-- **Advanced Options**: Advanced methods expose all parameters for power users
-- **Long-Running Tasks**: Design processes run 7-10 minutes per design on H100 GPU
-- **LLM-Friendly Results**: Structured JSON responses with paths and metrics
-- **Resource Management**: Example sequences provided as MCP resources for easy reference
+- **Interfaces**: Each tool focuses on a specific use case with sensible defaults
+- **Advanced options**: Advanced methods expose all parameters for power users
+- **Runtime**: Design runs typically take 7–10 minutes per design on an H100 GPU
+- **Results**: Tools return structured JSON with file paths and metrics
+- **Resources**: Example sequences are provided as MCP resources
 
 ### Technical Features
 
@@ -253,8 +280,10 @@ protein_hunter_mcp/
 ├── pyproject.toml            # Project configuration
 ├── mcp-config.json           # MCP client config examples
 ├── README.md                 # This file
-├── MCP_USAGE.md              # Detailed MCP usage guide
-└── PROTEIN_SEQUENCES.md      # Documentation for example sequences
+├── docs/                     # Documentation
+│   ├── MCP_USAGE.md          # Detailed MCP usage guide
+│   ├── MIGRATION.md          # Migration guide
+│   └── PROTEIN_SEQUENCES.md  # Documentation for example sequences
 ```
 
 ## Available MCP Tools
